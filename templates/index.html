@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Forskningsavdelningen: Studiecirklar</title>
+	<link type=text/css rel=stylesheet href={{ url_for('static', filename='style.css') }}>
+	<script type=text/javascript src={{ url_for('static', filename='jquery.js') }}></script>
+	<script type=text/javascript src={{ url_for('static', filename='forsk.js') }}></script>
+</head>
+<body>
+	<h1 id="heading">Forskningsavdelningen: Studiecirklar</h1>
+
+	<h2>Vad gör personen i afton?</h2>
+	<div class="source">
+		<ul class="people">
+		{% for member in members %}
+			<li><span>{{ member['name'] }}</span> 
+				{% if member['circle'] %}
+					<em>{{ member['circle'] }}</em>
+					<a class=unattender data-circle="{{ member['circle'] }}" data-nick="{{ member['name'] }}" href=#>remove</a>
+					
+				{% else %}
+					{% for circ in circles %}
+						<a data-mnemonic="{{ circ['mnemonic'] }}" data-name="{{ circ['name'] }}" href=#>{{ circ['name'] }}</a>
+					{% endfor %}
+				{% endif %}
+			</li>
+		{% endfor %}
+		<ul>
+	</div>
+		
+</body>
+</html>

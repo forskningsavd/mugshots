@@ -1,0 +1,15 @@
+<h1>Forskningsavdelningen report card</h1>
+
+{% for day in report %}
+    <h2>{{ day['date']}}</h2>
+    <div>
+    {% for circle_for_day in day['circles'] %}
+        <h3>{{ circle_for_day['name'] }}</h3>
+        <ul>
+        {% for person in circle_for_day['attendees'] %}
+        	<li>{{ person }}</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    </div>
+{% endfor %}
