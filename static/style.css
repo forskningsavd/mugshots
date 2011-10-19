@@ -9,3 +9,12 @@ body {
 span {
   font-weight: bold;
 }
+
+#report {
+  font-size: 0.8em;
+}
+
+.footer {
+  font-style: italic;    
+  font-size: 70%;
+}

@@ -1,5 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Forskningsavdelningen: Studiecirklar</title>
+	<link type=text/css rel=stylesheet href={{ url_for('static', filename='style.css') }}>
+	<script type=text/javascript src={{ url_for('static', filename='jquery.js') }}></script>
+	<script type=text/javascript src={{ url_for('static', filename='forsk.js') }}></script>
+</head>
+<body id=report>
 <h1>Forskningsavdelningen report card</h1>
-
 {% for day in report %}
     <h2>{{ day['date']}}</h2>
     <div>
@@ -13,3 +22,10 @@
     {% endfor %}
     </div>
 {% endfor %}
+
+<hr>
+<p class=footer>
+    Usage: <a href=?month=2011-10>?month=2011-10</a>
+ </p>
+</body>
+</html>
