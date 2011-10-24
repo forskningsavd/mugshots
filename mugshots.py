@@ -1,15 +1,18 @@
 import flask
-from flask import Flask, g, abort, redirect, url_for, request, render_template
+from flask import Flask, g, abort, flash, redirect, url_for, request, render_template
 import flaskext.redis 
 import datetime
 
 app = Flask(__name__)
+with open('secret_key.txt') as f:
+    app.secret_key = f.read()
+
 db = flaskext.redis.init_redis(app)
 
 
 
 @app.route("/setup-first")
-def hello():
+def setup_first():
     """Set up a starting dataset.
     """
     circles = [
@@ -37,6 +40,10 @@ def hello():
         db.sadd('nicks', p)
     
     db.save()
+
+    flash('First! Database is go \'enna!')
+
+    return redirect(url_for('index'))
 
 @app.route('/')
 def index():
