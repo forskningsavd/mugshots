@@ -3,9 +3,10 @@ from flask import Flask, g, abort, flash, redirect, url_for, request, render_tem
 import flaskext.redis 
 import datetime
 import sys
+import os
 
 app = Flask(__name__)
-with open('secret_key.txt') as f:
+with open('%s/secret_key.txt' % os.getcwd()) as f:
     app.secret_key = f.read()
 
 db = flaskext.redis.init_redis(app)
