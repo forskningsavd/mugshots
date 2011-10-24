@@ -21,7 +21,7 @@ Start by e.g.
 
 Initialize the secret key
 
-    head -c 24 /dev/random | base64 > secret_key.txt
+    echo "key=\"$(head -c 24 /dev/random | base64)\"" > secret_key.py
 
 The database will be initialized when opening the index page the first time.
 
