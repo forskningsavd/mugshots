@@ -56,6 +56,9 @@ def index():
             mnemonic= mnemonic
         )
         circles.append(circle)
+    if len(circles) == 0:
+        return redirect(url_for('setup_first'))
+
     people = db.smembers('nicks')
     today = datetime.datetime.now().strftime('%Y-%m-%d')
     members = []

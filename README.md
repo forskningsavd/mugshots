@@ -23,7 +23,7 @@ Initialize the secret key
 
     head -c 24 /dev/random | base64 > secret_key.txt
 
-Open the page `/setup-first` to populate the database.
+The database will be initialized when opening the index page the first time.
 
 ## Redis
 
