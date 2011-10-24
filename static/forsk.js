@@ -33,5 +33,14 @@ $(function() {
         
         
     });
-
+	$('.box h3').click(function() {
+		$(this)
+			.parent()
+			.find('ul')
+				.show('slow')
+			.end()
+			.find('form')
+				.show('slow')
+			.end();
+	});
 });

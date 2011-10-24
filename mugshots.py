@@ -66,7 +66,13 @@ def index():
         otherkey = '%s:%s' % (person, today)
         circle = db.get(otherkey) or ''
         members.append(dict(name=person, circle=circle))
-    return render_template('index.html', members=members, circles=circles)
+    
+    reports = set()
+    for candidate_month in db.keys('meetups:*'):
+        junk, _, month = candidate_month.partition(":")
+        reports.add(month)
+    
+    return render_template('index.html', members=members, circles=circles, reports=reports)
 
 @app.route("/attend")
 def attend():

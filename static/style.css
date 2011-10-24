@@ -18,3 +18,22 @@ span {
   font-style: italic;    
   font-size: 70%;
 }
+
+#addnick input {width:300px}
+
+.box {
+	float: left;
+	border-radius: 20px;
+	width:300px;
+	background: #eee;
+	padding: 1em;
+	margin-left: 10px;
+}
+.box h3 {
+	margin:0 0 10px 0;
+	font-size: 1.3em;
+}
+#viewreports ul { margin:0; list-style-type: none; padding:0;}
+#viewreports ul li { margin:0; padding:0; }
+
+.notshown {display:none;}

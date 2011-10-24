@@ -38,6 +38,25 @@
 		{% endfor %}
 		<ul>
 	</div>
-		
+	
+	<div id=addnick class=box >
+	    <h3>Ny forskare...</h3>
+	    <form action=/join class=notshown>
+	        <label for=nick>Nickname:</label>
+	        <input id=nick name=nick>
+	    </form>
+    </div>
+	<div id=viewreports class=box>
+	    <h3>Läs rapport...</h3>
+	    <ul class=notshown>
+	    {% for report in reports %}
+	    <li>
+	        <a href={{ url_for('report_one_month') }}?month={{ report }}>{{ report }}</a>
+	    </li>
+	    {% endfor %}
+	    </ul>
+    </div>
+    
+    
 </body>
 </html>
