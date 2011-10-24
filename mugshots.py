@@ -2,6 +2,7 @@ import flask
 from flask import Flask, g, abort, flash, redirect, url_for, request, render_template
 import flaskext.redis 
 import datetime
+import sys
 
 app = Flask(__name__)
 with open('secret_key.txt') as f:
@@ -152,4 +153,7 @@ def report_one_month():
     return render_template('report.html', report=report)
 
 if __name__ == "__main__":
+    if 'debug' in sys.argv:
+        app.debug = True;
+
     app.run()

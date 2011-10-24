@@ -15,7 +15,7 @@ Now using a template and a CSS and a favicon, and Jinja template language.
 
 Start by e.g.
 
-    python mugshots.py
+    python mugshots.py debug
 
 ## Setup
 
