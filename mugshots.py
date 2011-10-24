@@ -124,10 +124,13 @@ def join_forskningsavdelningen():
     """Add given nick to the database.
     """
     nick = request.args.get("nick", "")
+    message = "Hm, what?"
     if nick:
         db.sadd("nicks", nick)
-        return '1'
-    return '0'
+        message = "Tack, tillagd."
+    flash(message)
+    return redirect(url_for('index'))
+    
         
 @app.route("/report")
 def report_one_month():
