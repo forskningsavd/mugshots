@@ -4,10 +4,10 @@ import flaskext.redis
 import datetime
 import sys
 import os
+import secret_key
 
 app = Flask(__name__)
-with open('%s/secret_key.txt' % os.getcwd()) as f:
-    app.secret_key = f.read()
+app.secret_key = secret_key.key
 
 db = flaskext.redis.init_redis(app)
 
