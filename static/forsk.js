@@ -1,11 +1,12 @@
 $(function() {
     $("ul.people li a").click(function(e) {
         var $this = $(this),
+            today = $this.data('today') || '',
             circle = $this.data('mnemonic') || '',
             circleName = $this.data('name') || '',
             nick = $this.parent().find('span').html();
         e.preventDefault();
-        $.get('/attend?nick=' + nick + '&circle=' + circle, function(result, status) {
+        $.get('/attend?date=' + today + '&nick=' + nick + '&circle=' + circle, function(result, status) {
             if (result) {
                 $this.parent()
                     .find('span')
@@ -24,10 +25,11 @@ $(function() {
     
     $(".unattender").live('click', function(e) {
         var $this = $(this),
+	    today = $this.data('today') || '',
             circle = $this.data('circle') || '',
             nick = $this.data('nick') || '';
         e.preventDefault();
-        $.get('/unattend?nick=' + nick + '&circle=' + circle, function(result, status) {
+        $.get('/unattend?date=' + today + '&nick=' + nick + '&circle=' + circle, function(result, status) {
             window.location.href=window.location.href;
         });
         

@@ -9,7 +9,15 @@ with open('secret_key.txt') as f:
 
 db = flaskext.redis.init_redis(app)
 
-
+def get_date():
+    today = request.args.get('date', '')
+    try:
+        datetime.datetime.strptime(today, '%Y-%m-%d')
+    except:
+        if len(today) > 0:
+            flash("Format of date '%s' is incorrect, should be YYYY-mm-dd" % (today,))
+        today = datetime.datetime.now().strftime('%Y-%m-%d')
+    return today
 
 @app.route("/setup-first")
 def setup_first():
@@ -60,7 +68,7 @@ def index():
         return redirect(url_for('setup_first'))
 
     people = db.smembers('nicks')
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
+    today = get_date()
     members = []
     for person in people:
         otherkey = '%s:%s' % (person, today)
@@ -72,14 +80,14 @@ def index():
         junk, _, month = candidate_month.partition(":")
         reports.add(month)
     
-    return render_template('index.html', members=members, circles=circles, reports=reports)
+    return render_template('index.html', today=today, members=members, circles=circles, reports=reports)
 
 @app.route("/attend")
 def attend():
     """Ajax callback to record a person as attending a circle.
     """
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
-    this_month = datetime.datetime.now().strftime('%Y-%m')
+    today = get_date()
+    this_month = today[0:-3]
     nick = request.args.get("nick", "")
     circle = request.args.get("circle", "")
     if nick and circle:
@@ -99,8 +107,8 @@ def attend():
 def unattend():
     """Ajax callback to cancel attendance for one person.
     """
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
-    this_month = today[len(today)-3]
+    today = get_date()
+    this_month = today[0:-3]
     nick = request.args.get("nick")
     circle = request.args.get("circle")
     if nick and circle:

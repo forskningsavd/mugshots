@@ -20,6 +20,16 @@ span {
   font-size: 70%;
 }
 
+#call-to-action h2 {
+	float: left;
+}
+#call-to-action p {
+	float: right;
+}
+.source {
+	clear: both;
+}
+
 #addnick {background: #AB3229;}
 #addnick input {width:280px}
 

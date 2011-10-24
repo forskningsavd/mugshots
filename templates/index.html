@@ -25,18 +25,22 @@
     <div id=content>
 	<h1 id="heading">Forskningsavdelningen: Studiecirklar</h1>
 
-	<h2>Vad gör personen i afton?</h2>
+	<div id=call-to-action>
+		<h2>Vad gör personen i afton?</h2>
+		<p>{{today}}</p>
+	</div>
+	
 	<div class="source">
 		<ul class="people">
 		{% for member in members %}
 			<li><span>{{ member['name'] }}</span> 
 				{% if member['circle'] %}
 					<em>{{ member['circle'] }}</em>
-					<a class=unattender data-circle="{{ member['circle'] }}" data-nick="{{ member['name'] }}" href=#>remove</a>
+					<a class=unattender data-today="{{today}}" data-circle="{{ member['circle'] }}" data-nick="{{ member['name'] }}" href=#>remove</a>
 					
 				{% else %}
 					{% for circ in circles %}
-						<a data-mnemonic="{{ circ['mnemonic'] }}" data-name="{{ circ['name'] }}" href=#>{{ circ['name'] }}</a>
+						<a data-mnemonic="{{ circ['mnemonic'] }}" data-today="{{today}}" data-name="{{ circ['name'] }}" href=#>{{ circ['name'] }}</a>
 					{% endfor %}
 				{% endif %}
 			</li>
