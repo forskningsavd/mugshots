@@ -1,2 +1,4 @@
 dump.rdb
 secret_key.txt
+
+build/pip-delete-this-directory.txt

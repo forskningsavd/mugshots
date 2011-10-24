@@ -10,14 +10,19 @@
 <body>
 	{% with messages = get_flashed_messages() %}
 	{% if messages %}
-	<div id=flash>
+	<div id=flash class=notshown>
+	    <div class=flashwrapper>
 		{% for message in messages %}
 			<p>{{ message }}</p>
 		{% endfor %}
+		</div>
 	</div>
+	<script>$(function() {
+	    $('#flash').slideDown('slow').delay(5000).fadeOut('slow');
+	})</script>
 	{% endif %}
 	{% endwith %}
-
+    <div id=content>
 	<h1 id="heading">Forskningsavdelningen: Studiecirklar</h1>
 
 	<h2>Vad gör personen i afton?</h2>
@@ -56,6 +61,7 @@
 	    {% endfor %}
 	    </ul>
     </div>
+    </div><!-- Content -->
     
     
 </body>

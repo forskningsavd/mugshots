@@ -1,10 +1,11 @@
 body {
   font-family: sans-serif;
   font-size: 2em;
-  background: lightgray;
+  background: #EDCE82;
 }
 #heading {
   font-size: 2em;
+	color: #D68644;
 }
 span {
   font-weight: bold;
@@ -19,21 +20,45 @@ span {
   font-size: 70%;
 }
 
-#addnick input {width:300px}
+#addnick {background: #AB3229;}
+#addnick input {width:280px}
 
 .box {
 	float: left;
 	border-radius: 20px;
-	width:300px;
+	width:280px;
 	background: #eee;
 	padding: 1em;
 	margin-left: 10px;
 }
 .box h3 {
 	margin:0 0 10px 0;
-	font-size: 1.3em;
+	font-size: 1.0em;
 }
+#viewreports { background: #662845; color: white;}
 #viewreports ul { margin:0; list-style-type: none; padding:0;}
-#viewreports ul li { margin:0; padding:0; }
-
+#viewreports ul li  { margin:0; padding:0; }
+#viewreports ul li a { color: white;  }
 .notshown {display:none;}
+
+body,
+#flash {
+	margin: 0;
+	padding: 0;
+	text-align: center;	
+}
+#content {
+	text-align: left;
+	width: 1160px;
+	margin:0px auto;
+}
+.flashwrapper {
+	background-color: #577867;
+	text-align: left;
+	width: 800px;
+	padding:0.1em 0.7em;
+	border-radius: 20px;
+	margin:0 auto;
+	color: white;
+}
+#flash {margin: 10px;}
