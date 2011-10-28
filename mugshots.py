@@ -5,6 +5,7 @@ import datetime
 import sys
 import os
 import secret_key
+import yaml
 
 app = Flask(__name__)
 app.secret_key = secret_key.key
@@ -21,15 +22,16 @@ def get_date():
         today = datetime.datetime.now().strftime('%Y-%m-%d')
     return today
 
+def get_fixture_data():
+    with open("fixture.yaml", "r") as f: 
+        return yaml.load(f.read())
+
 @app.route("/setup-first")
 def setup_first():
     """Set up a starting dataset.
     """
-    circles = [
-        dict(id=1, name="Software", mnemonic="software"),
-        dict(id=2, name="Hardware", mnemonic="hardware")
-    ]
-    for c in circles:
+    fixture = get_fixture_data()
+    for c in fixture['circles']:
         did_add = db.sadd('circles', c['mnemonic'])
         if did_add:
             circle_key = 'circle:%s' % c['mnemonic']
@@ -37,16 +39,7 @@ def setup_first():
             db.hset(circle_key, 'name', c['name'])
             db.hset(circle_key, 'mnemonic', c['mnemonic'])
     
-    people = [
-        'olleolleolle',
-        'jonasb',
-        'qzio',
-        'phrst',
-        'lakevalley',
-        'stg',
-        'pipeunderscoreslash'
-    ]
-    for p in people:
+    for p in fixture['people']:
         db.sadd('nicks', p)
     
     db.save()
