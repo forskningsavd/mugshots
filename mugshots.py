@@ -77,6 +77,15 @@ def index():
     
     return render_template('index.html', today=today, members=members, circles=circles, reports=reports)
 
+def person_should_be_added(nick, today, circle):
+    if not nick and circle:
+        return False
+    # Has this Nick been registered in a circle today? If so, return False
+    for circle_name in db.keys("circle:*:%s" % today):
+        if nick in db.smembers(circle_name):
+            return False
+    return True
+
 @app.route("/attend")
 def attend():
     """Ajax callback to record a person as attending a circle.
@@ -85,7 +94,7 @@ def attend():
     this_month = today[0:-3]
     nick = request.args.get("nick", "")
     circle = request.args.get("circle", "")
-    if nick and circle:
+    if person_should_be_added(nick, today, circle):
         key = "circle:%s:%s" % (circle, today)
         db.sadd(key, nick)
         otherkey = "%s:%s" % (nick, today)
