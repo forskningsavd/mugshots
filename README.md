@@ -4,10 +4,11 @@ Flask app to note attendance at a Studiecirkel.
 
 ## Requirements 
 
-Python, Flask, Redis
+Python, Flask, Redis, PyYAML
 
     pip install Flask
     pip install Flask-Redis
+    pip install PyYAML
 
 ## Use Flask
 
