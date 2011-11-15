@@ -139,7 +139,7 @@ def report_one_month():
     dates_this_month = db.smembers("meetups:%s" % chosen_month)
     circles_this_month = db.smembers("circles:%s" % chosen_month)
     
-    for iso_day in dates_this_month:
+    for iso_day in sorted(dates_this_month):
         day = {'date': iso_day, 'circles': []}
         for circle_name in circles_this_month:
             circle = {'name': circle_name, 'attendees': []}
